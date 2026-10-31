@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Captura</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="capture.css">
+</head>
+<body>
+  <header>
+    <h1>
+      <a class="back-button" id="btn-back" href="#" hidden aria-label="Voltar"><span data-icon="arrowLeft" data-size="16"></span></a>
+      <span class="logo" data-icon="camera" data-size="18" role="img" aria-label="Captura de tela"></span>
+    </h1>
+    <nav class="right">
+      <a class="btn img-btn" id="btn-copy" href="#" role="button"><span data-icon="copy" data-size="18"></span><span class="tooltip">Copiar imagem</span></a>
+      <a class="btn img-btn" id="btn-trash" href="#" role="button"><span data-icon="trash" data-size="18"></span><span class="tooltip">Excluir imagem</span></a>
+      <a class="btn img-btn" id="btn-download" href="#" role="button"><span data-icon="download" data-size="18"></span><span class="tooltip"><span id="download-label">Baixar imagem</span> <span class="image-type"></span></span></a>
+      <span class="sep" aria-hidden="true"></span>
+      <a class="btn btn-nav" id="btn-history" href="#"><span data-icon="list" data-size="18"></span><span class="tooltip">Arquivos</span></a>
+      <a class="btn btn-nav" id="btn-settings" href="#"><span data-icon="sliders" data-size="18"></span><span class="tooltip">Opções</span></a>
+    </nav>
+  </header>
+
+  <div id="content">
+    <div id="wrap">
+      <div id="image" class="loading" tabindex="1"></div>
+      <div id="history" hidden></div>
+    </div>
+  </div>
+
+  <div id="error-wrap" hidden>
+    <div id="error" role="alert">
+      <span class="error-icon" data-icon="alert" data-size="16"></span>
+      <div class="error-content">
+        <h3 id="error-title"></h3>
+        <p id="error-body"></p>
+      </div>
+      <button type="button" class="error-dismiss" aria-label="Fechar"><span data-icon="x" data-size="14"></span></button>
+    </div>
+  </div>
+
+  <div id="snackbar" class="notify-snackbar" role="status" aria-live="polite"><div class="notify-snackbar--inner"></div></div>
+  <div id="ctx" class="clickdialog" role="menu" hidden></div>
+
+  <script type="module" src="capture.js"></script>
+</body>
+</html>

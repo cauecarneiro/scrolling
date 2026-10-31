@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opções</title>
+  <link rel="stylesheet" href="ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <header>
+    <a class="back-button" id="btn-back" href="#" hidden aria-label="Voltar"><span data-icon="arrowLeft" data-size="16"></span></a>
+    <span class="brand" role="img" aria-label="Captura de tela"><span data-icon="camera" data-size="18"></span></span>
+    <a class="btn-ui files-link" href="capture.html"><span data-icon="list" data-size="14"></span>Arquivos</a>
+  </header>
+
+  <main>
+    <div class="cmd" role="dialog" aria-label="Opções">
+      <div class="cmd-input">
+        <span data-icon="search" data-size="18" class="muted"></span>
+        <input id="search" type="text" placeholder="Buscar opções…" autocomplete="off" spellcheck="false" aria-label="Buscar opções">
+        <span class="kbd">/</span>
+      </div>
+
+      <div class="cmd-list" id="list" role="listbox">
+        <div class="cmd-group" data-group="Captura">
+          <div class="cmd-heading">Captura</div>
+
+          <div class="cmd-item" role="option" data-keywords="formato imagem png jpg jpeg qualidade peso tamanho">
+            <span data-icon="image" data-size="16" class="item-icon"></span>
+            <span class="item-text">
+              <span class="item-title">Formato da imagem</span>
+              <span class="item-desc">PNG é fiel à tela, mas pesado. JPG (qualidade 92) é bem mais leve em páginas longas.</span>
+            </span>
+            <span class="segmented" role="radiogroup" aria-label="Formato da imagem">
+              <label><input type="radio" name="fmt" value="png"><span>PNG</span></label>
+              <label><input type="radio" name="fmt" value="jpg"><span>JPG</span></label>
+            </span>
+          </div>
+
+          <label class="cmd-item" role="option" data-keywords="copiar automaticamente area de transferencia clipboard">
+            <span data-icon="clipboard" data-size="16" class="item-icon"></span>
+            <span class="item-text">
+              <span class="item-title">Copiar a imagem automaticamente</span>
+              <span class="item-desc">Ao abrir o resultado, a imagem já fica na área de transferência. Em capturas divididas, copia a primeira.</span>
+            </span>
+            <input type="checkbox" class="switch" id="auto_copy">
+          </label>
+
+          <label class="cmd-item" role="option" data-keywords="reduzir copiar grande pixels google docs limite 25">
+            <span data-icon="minimize" data-size="16" class="item-icon"></span>
+            <span class="item-text">
+              <span class="item-title">Reduzir imagens grandes ao copiar</span>
+              <span class="item-desc">Reduz se passar de 25.000.000 de pixels (limite de colagem do Google Docs).</span>
+            </span>
+            <input type="checkbox" class="switch" id="fit_copies">
+          </label>
+        </div>
+
+        <div class="cmd-sep" role="separator"></div>
+
+        <div class="cmd-group" data-group="Download">
+          <div class="cmd-heading">Download</div>
+
+          <div class="cmd-item column" role="option" data-keywords="nome arquivo modelo template url dominio titulo data">
+            <span class="row">
+              <span data-icon="file" data-size="16" class="item-icon"></span>
+              <span class="item-text">
+                <span class="item-title">Nome do arquivo</span>
+                <span class="item-desc">Capturas divididas ganham “-2”, “-3” no fim. Caracteres inválidos viram “_”.</span>
+              </span>
+            </span>
+            <input type="text" class="input-ui" id="filename_template" spellcheck="false" autocomplete="off" aria-label="Modelo do nome do arquivo">
+            <span class="chips">
+              <button type="button" class="kbd" data-insert="{url}">{url}</button>
+              <button type="button" class="kbd" data-insert="{domain}">{domain}</button>
+              <button type="button" class="kbd" data-insert="{path}">{path}</button>
+              <button type="button" class="kbd" data-insert="{title}">{title}</button>
+              <button type="button" class="kbd" data-insert="{date:yyyy-MM-dd-HH_mm_ss}">{date}</button>
+              <button type="button" class="reset" id="reset-template">Restaurar padrão</button>
+            </span>
+            <span class="preview">Prévia <code id="preview"></code></span>
+          </div>
+
+          <label class="cmd-item" role="option" data-keywords="perguntar onde salvar salvar como pasta">
+            <span data-icon="save" data-size="16" class="item-icon"></span>
+            <span class="item-text">
+              <span class="item-title">Perguntar onde salvar</span>
+              <span class="item-desc">Mostra “Salvar como” ao baixar um arquivo único. Não vale para capturas com várias imagens.</span>
+            </span>
+            <input type="checkbox" class="switch" id="save_as">
+          </label>
+        </div>
+      </div>
+
+      <p class="cmd-empty" id="empty" hidden>Nenhuma opção encontrada.</p>
+
+      <div class="cmd-footer">
+        <span class="hints"><span class="kbd">↑↓</span> navegar <span class="kbd">↵</span> alternar <span class="kbd">esc</span> limpar</span>
+        <span id="saved" role="status" aria-live="polite"></span>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="options.js"></script>
+</body>
+</html>
