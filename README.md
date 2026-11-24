@@ -1,18 +1,24 @@
 # Scrolling
 
+Extensão de navegador que tira um print da página inteira, do topo ao fim, em um clique, e copia a imagem para colar onde quiser.
+
+Ferramenta · Extensão para Chrome e navegadores Chromium (versão 110+) · 2026
+
+[Página no portfólio](https://cauecarneiro.github.io/portfolio/scrolling.html)
+
 Extensão para navegadores baseados em Chromium (Chrome, Edge, Brave, Arc, Dia e similares) que tira um print da **página inteira**, do topo ao fim, em um clique. Se a página for gigante, ela **divide a captura em várias imagens**. A imagem também vai **direto para a área de transferência**, pronta para colar.
 
 Feita com Manifest V3 e JavaScript puro, sem build, sem dependências e **sem enviar nada para a internet**.
 
-<p align="center">
-  <img src="docs/images/resultado.png" alt="Tela de resultado com a página capturada" width="760">
-</p>
-
 ## Sumário
 
-- [O que ela faz](#o-que-ela-faz)
+- [Telas](#telas)
+- [O que faz](#o-que-faz)
+- [Meu papel](#meu-papel)
+- [Como foi feito](#como-foi-feito)
+- [Tecnologias](#tecnologias)
 - [Requisitos](#requisitos)
-- [Instalação passo a passo](#instalação-passo-a-passo)
+- [Como rodar](#como-rodar)
   - [Opção A: baixar o zip (mais fácil)](#opção-a-baixar-o-zip-mais-fácil)
   - [Opção B: clonar com git](#opção-b-clonar-com-git)
   - [Fixar o ícone na barra](#fixar-o-ícone-na-barra)
@@ -28,7 +34,13 @@ Feita com Manifest V3 e JavaScript puro, sem build, sem dependências e **sem en
 - [Estrutura do projeto](#estrutura-do-projeto)
 - [Licença](#licença)
 
-## O que ela faz
+## Telas
+
+<p align="center">
+  <img src="docs/images/resultado.png" alt="Tela de resultado com a página capturada" width="760">
+</p>
+
+## O que faz
 
 - Captura a página inteira rolando e costurando as fatias, inclusive quando quem rola é uma área interna da página (e não a janela) ou quando o conteúdo está dentro de iframes.
 - Prepara a página para um resultado limpo: desliga animações, carrega imagens preguiçosas (lazy-load), esconde barras de rolagem e evita que menus fixos e botões flutuantes se repitam em todas as fatias.
@@ -38,12 +50,28 @@ Feita com Manifest V3 e JavaScript puro, sem build, sem dependências e **sem en
 - Salva em PNG ou JPG, com nome de arquivo configurável.
 - Tema preto em todas as telas.
 
+## Meu papel
+
+Projeto solo e de código aberto. O repositório tem um único commit (versão 1.0.0), de 30/10/2026.
+
+## Como foi feito
+
+- **Manifest V3 sem build:** JavaScript puro e nenhuma dependência; edite, recarregue a extensão e teste.
+- **Captura por fatias:** o `background.js` (service worker) orquestra; o `content.js` mede a página, desliga animações, rola e restaura a posição original.
+- **Capturas gigantes divididas:** `lib/tiles.js` aplica a regra de divisão (limites de pixels do navegador) e codifica cada faixa assim que fica pronta, liberando memória.
+- **Histórico local:** `lib/db.js` guarda as capturas em IndexedDB e as opções ficam em `chrome.storage.local`; nenhuma requisição de rede.
+- **Telas próprias:** `popup.*` (progresso), `capture.*` (resultado e histórico) e `options.*` (opções), com tema preto em `ui.css`.
+
+## Tecnologias
+
+JavaScript, HTML, CSS, Manifest V3, IndexedDB.
+
 ## Requisitos
 
 - Um navegador baseado em Chromium, versão **110 ou mais nova**.
 - Nenhum programa extra. Para a Opção A basta o navegador. Para a Opção B você precisa do `git`.
 
-## Instalação passo a passo
+## Como rodar
 
 Essa extensão não está em uma loja. Você a instala em "modo desenvolvedor", que é um processo normal e leva menos de um minuto.
 
@@ -221,3 +249,6 @@ Não há build nem dependências: edite os arquivos, clique em recarregar no car
 ## Licença
 
 [MIT](LICENSE)
+
+---
+Feito por Cauê Crillanovick · [portfólio](https://cauecarneiro.github.io/portfolio/) · [LinkedIn](https://www.linkedin.com/in/cau%C3%AA-carneiro)
